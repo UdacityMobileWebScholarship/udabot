@@ -25,9 +25,9 @@
 
 ### supporting information:
 
-<!-- The following information MUST be included. -->
-
- - [ ] `node -v` prints:
+<!-- Please included the following information: -->
+<!--  if it's not a UI related issue -->
+ - [ ] `node -v` prints:  
  - [ ] Windows, OS X/macOS, or Linux?:
 
 <!-- For feature requests, uncomment the section below. But first, review the existing feature requests and make sure there isn't one that already describes the feature you'd like to see added: -->
