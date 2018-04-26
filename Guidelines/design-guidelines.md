@@ -3,7 +3,7 @@ The following styleguide will be followed throughout the project:
 <img  width="100%" src="https://github.com/UdacityMobileWebScholarship/udabot/blob/master/Guidelines/udabot-styleguide.png" />
 
 ### Important Points To Note
-1. Please read the (contributing guide)[https://github.com/UdacityMobileWebScholarship/udabot/blob/master/CONTRIBUTING.md] to start with the UI contribution.
+1. Please read the [contributing guide](https://github.com/UdacityMobileWebScholarship/udabot/blob/master/CONTRIBUTING.md) to start with the UI contribution.
 
 2. For icons, following can be used:
     * [Font Awesome](https://fontawesome.com/get-started)
