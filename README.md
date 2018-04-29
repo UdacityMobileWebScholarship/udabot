@@ -15,7 +15,7 @@ The repo contains 3 core components
 
 **Udabot frontend webpage :** This is React based component for the website of Udacity. This contains a reference to webchat control as a child component.
 
-Refer to [wiki](https://github.com/Kartik1607/UdaBot/wiki) to understand how to setup the code.
+Refer to [wiki](https://github.com/UdacityMobileWebScholarship/udabot/wiki) to understand how to setup the code.
 
 ## :heart: Tech stacks :heart:
 
