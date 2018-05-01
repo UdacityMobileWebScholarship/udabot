@@ -1,0 +1,113 @@
+{
+  "luis_schema_version": "3.0.0",
+  "versionId": "0.1",
+  "name": "udabot",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "find_course"
+    },
+    {
+      "name": "None"
+    }
+  ],
+  "entities": [
+    {
+      "name": "cost",
+      "roles": []
+    },
+    {
+      "name": "course_name",
+      "roles": []
+    },
+    {
+      "name": "domain",
+      "roles": []
+    },
+    {
+      "name": "duration",
+      "roles": []
+    },
+    {
+      "name": "pre-requisites",
+      "roles": []
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "patternAnyEntities": [],
+  "regex_entities": [],
+  "prebuiltEntities": [],
+  "model_features": [],
+  "regex_features": [],
+  "patterns": [],
+  "utterances": [
+    {
+      "text": "help me find a free course",
+      "intent": "find_course",
+      "entities": [
+        {
+          "entity": "cost",
+          "startPos": 15,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "help me select a course",
+      "intent": "find_course",
+      "entities": [
+        {
+          "entity": "domain",
+          "startPos": 17,
+          "endPos": 22
+        }
+      ]
+    },
+    {
+      "text": "how long does it take to complete a certification?",
+      "intent": "find_course",
+      "entities": [
+        {
+          "entity": "duration",
+          "startPos": 4,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "which certification should i pursue?",
+      "intent": "find_course",
+      "entities": [
+        {
+          "entity": "course_name",
+          "startPos": 6,
+          "endPos": 18
+        }
+      ]
+    },
+    {
+      "text": "which course is suitable for me?",
+      "intent": "find_course",
+      "entities": [
+        {
+          "entity": "course_name",
+          "startPos": 6,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "which nanodegree is suitable for me?",
+      "intent": "find_course",
+      "entities": [
+        {
+          "entity": "course_name",
+          "startPos": 6,
+          "endPos": 15
+        }
+      ]
+    }
+  ]
+}
