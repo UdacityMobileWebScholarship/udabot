@@ -1,3 +1,0 @@
-const getLuisResult = (utterance) => {
-    
-}

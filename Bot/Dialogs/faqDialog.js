@@ -5,16 +5,13 @@ const promptHelper = require('../helper/promptHelper')(builder);
 
 module.exports = (bot) => {
     // We will call LUIS here to understand user utterance if user has typed instead of clicking a button.
-    bot.dialog(dialogs.keys.tellAboutUdacity, [
-        (session) => {
-            builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, botMessages.tellMeAboutUdacity));
-        },
-        (session, result) => {
-            let response = result.response;
-            
-            if (response ===  botMessages.tellMeAboutUdacity.options.awesome) {
-                builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, botMessages.awesome));
-            }
+    bot.dialog(dialogs.keys.faqDialog, [
+        (session, args) => {
+            let key = args.faqKey;
+            let utterance = args.utterance;
+            if (key === dialogs.faqs.tellAboutUdacity) {
+                builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, botMessages.tellMeAboutUdacity));
+            } 
         },
         (session, result) => {
             let response = result.response;

@@ -1,8 +1,13 @@
 let dialogs = {
     firstRun: 'firstRun',
     rootDialog: 'rootDialog',
-    tellAboutUdacity: 'tellAboutUdacity',
+    faqDialog: 'faqDialog',
 };
+
+let faqs = {
+    tellAboutUdacity: 'tellAboutUdacity',
+    whatIsCost: 'whatIsCost'
+}
 
 
 let _export =  {
@@ -14,9 +19,16 @@ let _export =  {
                 value: dialogs[dialog]
             })
         }
+        for(let faq of Object.keys(faqs)) {
+            Object.defineProperty(faqs, faq, {
+                writable: false,
+                value: faqs[faq]
+            })
+        }
     },
 
-    keys: dialogs
+    keys: dialogs,
+    faqs: faqs
 }
 
 Object.defineProperty(_export, 'keys', {
