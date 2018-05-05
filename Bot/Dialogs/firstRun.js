@@ -1,10 +1,11 @@
 const botMessages = require('../helper/botMessages') ;
 const builder = require('botbuilder');
+const dialogs = require('./dialogs');
 const promptHelper = require('../helper/promptHelper')(builder);
 
 
 module.exports = ((bot) => {
-    bot.dialog('firstRun', [
+    bot.dialog(dialogs.keys.firstRun, [
         (session) => {
             session.userData.firstRun = true;
             builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, botMessages.initialMessage));
@@ -16,8 +17,7 @@ module.exports = ((bot) => {
             } else if (response === botMessages.initialMessage.options.cool) {
                 builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, botMessages.welcomeMessage));
             } else {
-                session.privateConversationData.utterance = response;
-                session.beginDialog('rootDialog');
+                session.beginDialog(dialogs.keys.rootDialog, {utterance: response});
             }
         },
         (session, result) => {
@@ -26,13 +26,12 @@ module.exports = ((bot) => {
                 builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, botMessages.welcomeMessage));        
             }
             else {
-                session.privateConversationData.utterance = response;
-                session.beginDialog('rootDialog');
+                session.beginDialog(dialogs.keys.rootDialog, {utterance: response});
             }
         }, 
         (session, result) => {
-            session.privateConversationData.utterance = result.response;
-            session.beginDialog('rootDialog');
+            let response = result.response;
+            session.beginDialog(dialogs.keys.rootDialog, {utterance: response});
         }
     ]).triggerAction({
         onFindAction: (context, callback) => {

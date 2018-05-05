@@ -1,6 +1,7 @@
 const restify = require('restify');
 const builder = require('botbuilder');
 const botbuilder_azure = require("botbuilder-azure");
+const dialogs = require('./Dialogs/dialogs.js');
 
 // Setup Restify Server
 const server = restify.createServer();
@@ -21,19 +22,20 @@ server.post('/api/messages', connector.listen());
 // Create your bot with a function to receive messages from the user
 // This default message handler is invoked if the user's utterance doesn't
 // match any intents handled by other dialogs.
-const bot = new builder.UniversalBot(connector);
+const bot = new builder.UniversalBot(connector, (session)=>{
+    session.beginDialog(dialogs.keys.rootDialog);
+});
+
+dialogs.init(bot);
 
 bot.on('conversationUpdate', (message) => {
     if (message.membersAdded) {
         message.membersAdded.forEach((identity) => {
             if (identity.id === message.address.bot.id) {
-                bot.beginDialog(message.address, 'firstRun');
+                bot.beginDialog(message.address, dialogs.keys.firstRun);
             }
         });
     }
 });
-
-require('./Dialogs/firstRun')(bot);
-require('./Dialogs/rootdialog')(bot);
 
 bot.set('storage', new builder.MemoryBotStorage());

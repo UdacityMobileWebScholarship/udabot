@@ -94,3 +94,21 @@ module.exports.awesome = new BotMessage(
         whatIsCost: `What is the cost?`
     }
 )
+
+module.exports.didNotUnderstand = new BotMessage(
+    [
+        [
+            `😥 Sorry, I did not understood what you said. My vacaubulary is pretty limited.`,
+            `😥 Hmm.. I did'nt get you. `,
+            `Sorry, my tiny brain can understand only some basic sentences or it will explode. 🤯`
+        ],
+        [
+            `How about choosing one option from below 👇`,
+            `Please choose below 👇 options or try a different text.`
+        ]
+    ],
+    {
+        getStarted: `Start Learning`,
+        whatIsCost: `What is the cost?`
+    }
+)
