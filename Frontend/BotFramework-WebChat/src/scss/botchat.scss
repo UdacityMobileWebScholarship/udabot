@@ -34,7 +34,6 @@
     }
 
     .wc-header {
-        background-color: $c_brand;
         box-shadow: 0 1px $c_shadow;
         box-sizing: content-box;
         color: $c01;
@@ -570,6 +569,7 @@
         left: 0;
         position: absolute;
         right: 0;
+        background-color:$c01;
 
         > .wc-upload,
         > .wc-textbox,

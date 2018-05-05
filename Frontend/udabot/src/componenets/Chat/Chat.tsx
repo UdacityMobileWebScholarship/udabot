@@ -1,12 +1,13 @@
 import * as React from 'react';
 import './Chat.css';
 import  * as BotChat from "botframework-webchat";
+import Background from '../Background/Background';
 
 class Chat extends React.Component {
   private params = BotChat.queryParams(location.search);
   public render() {
     return (
-      
+      <Background>
       <div className="App">
         
         <div className="App-intro">
@@ -29,6 +30,7 @@ class Chat extends React.Component {
         />
         </div>
       </div>
+      </Background>
     );
   }
 }
