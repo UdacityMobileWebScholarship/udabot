@@ -1,8 +1,6 @@
 const restify = require('restify');
 const builder = require('botbuilder');
 const botbuilder_azure = require("botbuilder-azure");
-const BotMessage = require('./helper/botMessages') ;
-const promptHelper = require('./helper/promptHelper')(builder);
 
 // Setup Restify Server
 const server = restify.createServer();
@@ -35,57 +33,7 @@ bot.on('conversationUpdate', (message) => {
     }
 });
 
-initialMessage = new BotMessage(
-    [
-        [
-            `Hey there, I’m Udabot! A Udacity chatbot to help make your learning experience udacious by providing personalized course recommendations and mentorship.`
-        ]
-    ],
-    {
-        howDoesThatWork: `How does that work?`,
-        cool: `Cool, let's get started!`
-    }
-);
+require('./Dialogs/firstRun')(bot);
+require('./Dialogs/rootdialog')(bot);
 
-
-howDoesThatWork = new BotMessage(
-    [
-        [
-            `Udacity is an innovative online education provider. We offer cutting-edge courses built in partnership with leading companies like Google, AT&T, and Facebook on everything from mastering web design to tech entrepreneurship.`
-        ],
-        [
-            `Our flagship Nanodegree programs set the standard for industry-recognized credentials, where your code is reviewed by experts from these organizations.`
-        ]
-    ],
-    {
-        cool: `Cool, let's get started!`
-    }
-)
-
-
-bot.dialog('firstRun', [
-    (session) => {
-        session.userData.firstRun = true;
-        builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, initialMessage));
-    },
-    (session, result) => {
-        let response = result.response;
-        if (response === initialMessage.options.howDoesThatWork) {
-            builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, howDoesThatWork));
-        } else if (response === initialMessage.options.cool) {
-            // TODO : Start that dialog
-        } else {
-            // TODO : QnA | LUIS response
-        }
-    }
-]).triggerAction({
-    onFindAction: (context, callback) => {
-        if (!context.userData.firstRun) {
-            callback(null, 1.1);
-        } else {
-            callback(null, 0.0);
-        }
-    }
-})
-
-bot.set('storage', builder.MemoryBotStorage());
+bot.set('storage', new builder.MemoryBotStorage());

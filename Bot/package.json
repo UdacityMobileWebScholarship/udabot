@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "axios": "^0.18.0",
     "botbuilder": "^3.13.1",
     "botbuilder-azure": "^3.0.4",
     "restify": "^5.0.0"
