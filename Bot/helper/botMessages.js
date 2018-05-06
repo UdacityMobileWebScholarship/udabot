@@ -1,6 +1,6 @@
 const allOptions = [];
 
-class BotMessage {
+const BotMessage = module.exports.BotMessage = class BotMessage {
     constructor(messages = [[]], options = {}) {
         this.messages = messages;
         if (this.messages.length === 0) {
@@ -66,20 +66,6 @@ module.exports.welcomeMessage = new BotMessage(
     ],
     {
         tellMeAboutUdacity: `Tell me about Udacity`
-    }
-)
-
-module.exports.tellMeAboutUdacity = new BotMessage(
-    [
-        [
-            `Udacity is a online portal for self-paced learning whose courses are prepared by tech giants like Google, Amazon, facebook etc .`
-        ],
-        [
-            `It provides some Nanodegree degree programs where you code is reviewed by experts from these organisations.`
-        ]
-    ],
-    {
-        awesome: `Awesome`
     }
 )
 

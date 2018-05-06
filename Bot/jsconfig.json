@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
         "checkJs": true,
-        "target": "es2015",
-        "module": "commonjs"
+        "moduleResolution": "node",
+        "target": "es2015"
     },
     "exclude": [
-        "node_modules",
-        "**/node_modules/*"
+        "node_modules"
     ]
 }
