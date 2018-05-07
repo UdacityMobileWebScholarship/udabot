@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.9.4"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "botbuilder": "^3.13.1",
     "botbuilder-azure": "^3.0.4",
+    "circular-json": "^0.5.3",
     "dotenv": "^5.0.1",
     "ent": "^2.2.0",
-    "restify": "^5.0.0"
+    "restify": "^5.0.0",
+    "winston": "^2.4.2"
   },
   "devDependencies": {
     "colors": "^1.2.1",

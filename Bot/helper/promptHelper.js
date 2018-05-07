@@ -1,6 +1,10 @@
+const JSON = require('circular-json');
+const winston = require('winston');
+
 const delay = 1000;
 
 const sendReply = (session, reply) => {
+    winston.log('info',`sendReply : `,reply);
     session.sendTyping();
     session.delay(delay);
     session.send(reply);
@@ -9,6 +13,7 @@ const sendReply = (session, reply) => {
 module.exports = (builder) => {
     return {
         getMessageAsSuggestedAction: (session, botMessage) => {
+            winston.log('info',`getMessageAsSuggestedAction `, botMessage);
             const actions = [];
             for(let opt of Object.keys(botMessage.options)) {
                 actions.push(builder.CardAction.imBack(session, botMessage.options[opt], botMessage.options[opt]));
@@ -20,7 +25,7 @@ module.exports = (builder) => {
                     sendReply(session, reply);
                 }
             })
-            let message = new builder.Message(session)
+            let message = new builder.Message()
                 .text(botReply[botReply.length - 1])
                 .suggestedActions(
                     builder.SuggestedActions.create(
@@ -29,6 +34,7 @@ module.exports = (builder) => {
                 );
             session.sendTyping();
             session.delay(delay);
+            winston.log('info',`getMessageAsSuggestedAction Return : `, message);
             return message;
         },
 

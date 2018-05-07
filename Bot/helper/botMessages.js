@@ -39,36 +39,6 @@ module.exports.initialMessage = new BotMessage(
     }
 );
 
-
-module.exports.howDoesThatWork = new BotMessage(
-    [
-        [
-            `Udacity is an innovative online education provider. We offer cutting-edge courses built in partnership with leading companies like Google, AT&T, and Facebook on everything from mastering web design to tech entrepreneurship.`
-        ],
-        [
-            `Our flagship Nanodegree programs set the standard for industry-recognized credentials, where your code is reviewed by experts from these organizations.`
-        ]
-    ],
-    {
-        cool: `Cool, let's get started!`
-    }
-)
-
-module.exports.welcomeMessage = new BotMessage(
-    [
-        [
-            `Hi! Welcome to Udacity.` 
-        ],
-        [
-            `I'm here to tell you all about Udacity.
-            Please tell me freely what's on your mind 😀`
-        ]
-    ],
-    {
-        tellMeAboutUdacity: `Tell me about Udacity`
-    }
-)
-
 module.exports.awesome = new BotMessage(
     [
         [
