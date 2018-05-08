@@ -1,14 +1,16 @@
 import * as React from 'react';
-import './App.css';
-import  * as BotChat from "botframework-webchat"
+import './Chat.css';
+import  * as BotChat from "botframework-webchat";
+import Background from '../Background/Background';
 
-class App extends React.Component {
+class Chat extends React.Component {
   private params = BotChat.queryParams(location.search);
   public render() {
     return (
+      <Background>
       <div className="App">
         
-        <p className="App-intro">
+        <div className="App-intro">
         <BotChat.Chat
           adaptiveCardsHostConfig=''
           user={{
@@ -26,10 +28,11 @@ class App extends React.Component {
           }} 
           resize='detect'         
         />
-        </p>
+        </div>
       </div>
+      </Background>
     );
   }
 }
 
-export default App;
+export default Chat;
