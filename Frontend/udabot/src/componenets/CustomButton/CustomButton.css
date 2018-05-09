@@ -1,4 +1,4 @@
-button.btn {
+button {
   padding: 0.9rem 2.1rem;
   text-transform: uppercase;
   border: 0;
@@ -14,12 +14,12 @@ button.btn {
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
 }
 
-button.btn:hover {
+button:hover {
   /* TODO: Add button hover effects based on design guidelines */
 }
 
 @media only screen and (min-device-width : 800px) and (max-device-width : 1024px) {
-  button.btn {
+  button {
     font-size: 1.8rem;
     padding: 1.5rem 3.9rem;
   }
@@ -27,7 +27,7 @@ button.btn:hover {
 
 /** Large Devices **/
 @media only screen  and (min-width : 1824px) {
-  button.btn {
+  button {
     font-size: 2rem;
     padding: 1.7rem 4.1rem;
   }
