@@ -76,7 +76,7 @@
     }
 
     .wc-suggested-actions {
-        background-color: #f9f9f9;
+        background-color: transparent;
         bottom: $consoleHeight;
         height: 0;
         left: 0;
@@ -88,7 +88,7 @@
         .wc-hscroll > ul {
             height: $actionsHeight;
             padding: 2px 3px;
-
+            margin-top: 0px;
             > li {
                 display: inline-block;
                 margin: 2px;
