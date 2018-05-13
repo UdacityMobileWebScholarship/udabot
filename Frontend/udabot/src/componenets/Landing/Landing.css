@@ -1,16 +1,81 @@
+.wrapper {
+  height: 100%;
+  padding: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .heading-font {
   text-align:center;
-  font-family: OpenSans;
+  font-family: 'Open Sans', sans-serif;
   color:#ffffff;
+  margin-top: 7rem;
+  margin-bottom: auto;
 }
 
 p.big {
-  line-height: 40.5px;
-  font-size:30px;
-  letter-spacing: 4.3px;
+  line-height: 5rem;
+  font-size: 2.5rem;
 }
 
 p.small {
-  line-height:20.5px; 
+  line-height: 2rem;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-top: -1rem;
+  display: block;
 }
 
+a {
+  margin-top: auto;
+  margin-bottom: 100px;
+}
+
+/** Smartphones **/
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  p.big {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+
+  p.small {
+    font-size: 1.2rem;
+  }
+}
+
+/** Tablets **/
+@media only screen and (min-device-width : 800px) and (max-device-width : 1024px) {
+  .heading-font {
+    margin-top: 8rem;
+  }
+
+  p.big {
+    font-size: 3.5rem;
+    line-height: 5.5rem;
+  }
+
+  p.small {
+    font-size: 2.1rem;
+    line-height: 2.8rem;
+  }
+}
+
+/** Large Devices **/
+@media only screen  and (min-width : 1824px) {
+  .heading-font {
+    margin-top: 12rem;
+  }
+
+  p.big {
+    font-size: 4rem;
+    line-height: 6.5rem;
+  }
+
+  p.small {
+    font-size: 2.3rem;
+    line-height: 2.8rem;
+  }
+}
