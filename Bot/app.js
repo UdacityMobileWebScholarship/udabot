@@ -1,13 +1,21 @@
 const restify = require('restify');
 const builder = require('botbuilder');
 const botbuilder_azure = require("botbuilder-azure");
-const BotMessage = require('./helper/botMessages') ;
-const promptHelper = require('./helper/promptHelper')(builder);
+const dialogs = require('./Dialogs/dialogs.js');
+const colors = require('colors');
+const JSON = require('circular-json');
+const winston = require('winston');
+
+winston.configure({
+    transports: [
+      new (winston.transports.File)({ filename: 'debug.log' })
+    ]
+  });
 
 // Setup Restify Server
 const server = restify.createServer();
 server.listen(process.env.port || process.env.PORT || 3978, function () {
-   console.log('%s listening to %s', server.name, server.url); 
+   winston.info('%s listening to %s', server.name, server.url); 
 });
   
 // Create chat connector for communicating with the Bot Framework Service
@@ -23,69 +31,35 @@ server.post('/api/messages', connector.listen());
 // Create your bot with a function to receive messages from the user
 // This default message handler is invoked if the user's utterance doesn't
 // match any intents handled by other dialogs.
-const bot = new builder.UniversalBot(connector);
+const bot = new builder.UniversalBot(connector, (session)=>{
+    winston.log('info', 'In POST');
+    session.beginDialog(dialogs.keys.rootDialog);
+});
+
+dialogs.init(bot);
 
 bot.on('conversationUpdate', (message) => {
     if (message.membersAdded) {
+        winston.log('info', `ConersationUpdate`)
         message.membersAdded.forEach((identity) => {
             if (identity.id === message.address.bot.id) {
-                bot.beginDialog(message.address, 'firstRun');
+                winston.log('info', 'Inside Coverstion Update', message);
+                bot.beginDialog(message.address, dialogs.keys.firstRun);
             }
         });
     }
 });
 
-initialMessage = new BotMessage(
-    [
-        [
-            `Hey there, I’m Udabot! A Udacity chatbot to help make your learning experience udacious by providing personalized course recommendations and mentorship.`
-        ]
-    ],
-    {
-        howDoesThatWork: `How does that work?`,
-        cool: `Cool, let's get started!`
-    }
-);
+bot.set('storage', new builder.MemoryBotStorage());
 
-
-howDoesThatWork = new BotMessage(
-    [
-        [
-            `Udacity is an innovative online education provider. We offer cutting-edge courses built in partnership with leading companies like Google, AT&T, and Facebook on everything from mastering web design to tech entrepreneurship.`
-        ],
-        [
-            `Our flagship Nanodegree programs set the standard for industry-recognized credentials, where your code is reviewed by experts from these organizations.`
-        ]
-    ],
-    {
-        cool: `Cool, let's get started!`
-    }
-)
-
-
-bot.dialog('firstRun', [
-    (session) => {
-        session.userData.firstRun = true;
-        builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, initialMessage));
+// Middle ware
+bot.use({
+    receive: function (event, next) {
+        winston.log('info',`User:`, event);
+        next();
     },
-    (session, result) => {
-        let response = result.response;
-        if (response === initialMessage.options.howDoesThatWork) {
-            builder.Prompts.text(session, promptHelper.getMessageAsSuggestedAction(session, howDoesThatWork));
-        } else if (response === initialMessage.options.cool) {
-            // TODO : Start that dialog
-        } else {
-            // TODO : QnA | LUIS response
-        }
+    send: function (event, next) {
+        //winston.log('info',`Udabot`, event);
+        next();
     }
-]).triggerAction({
-    onFindAction: (context, callback) => {
-        if (!context.userData.firstRun) {
-            callback(null, 1.1);
-        } else {
-            callback(null, 0.0);
-        }
-    }
-})
-
-bot.set('storage', builder.MemoryBotStorage());
+});

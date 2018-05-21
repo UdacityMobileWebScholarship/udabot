@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "checkJs": true,
+        "moduleResolution": "node",
+        "target": "es5"
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
